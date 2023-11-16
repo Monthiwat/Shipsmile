@@ -4,6 +4,7 @@ import './App.css'
 function App() {
   const [responseDataPostSabuy, setResponseDataPostSabuy] = useState(null);
   const [responseDataNinja, setResponseDataNinja] = useState(null);
+  const [responseDataNotFound, setResponseDataNotFound] = useState(null);
 
   const refInput = useRef(null)
 
@@ -12,7 +13,7 @@ function App() {
 
     if ( trackId.trim() !== '') {
       // API Postsabuy
-      if (trackId.startsWith("EB")) {
+      if (trackId.startsWith("E")) {
         // Define the options for the fetch request
         const requestOptionsPost = {
           method: 'POST',
@@ -31,12 +32,14 @@ function App() {
 
               }
               setResponseDataPostSabuy(dataRes);
+              setResponseDataNinja("");
+              setResponseDataNotFound("");
           })
           .catch(error => {
             // Handle errors here
             console.error('Error fetching data:', error);
           });    
-      } else if (trackId.startsWith("NV")) {
+      } else if (trackId.startsWith("N")) {
         //API ninja
         // Define the options for the fetch request
         const requestOptionsGet = {
@@ -53,13 +56,18 @@ function App() {
           .then(dataRes => {
               console.log(dataRes);
               setResponseDataNinja(dataRes);
+              setResponseDataPostSabuy("");
+              setResponseDataNotFound("");
           })
           .catch(error => {
             // Handle errors here
             console.error('Error fetching data:', error);
           });    
       } else {
-        console.error('Error fetching data:');
+        console.log("Setting Not Found ID");
+        setResponseDataNotFound("Setting Not Found ID: "+ trackId);
+        setResponseDataPostSabuy("");
+        setResponseDataNinja("");
       }
   
     }
@@ -124,17 +132,18 @@ function App() {
 
   function handleClearInput () {
     refInput.current.value = '';
-    setResponseDataPostSabuy('');
-    setResponseDataNinja('');
+    setResponseDataPostSabuy("");
+    setResponseDataNinja("");
+    setResponseDataNotFound("");
   }
 
   return (
     <>
-    <div className='grid justify-items-center items-center h-screen'>
-      <div className='w-full bg-gray-300 shadow-md rounded px-16 pt-6 pb-8 mb-4'>
-        <h2 className='font-bold text-xl mb-2'>Tracking</h2>
-          <div className='flex '>
-            <input className='w-96 m-1 p-1 bg-gray-50 border border-gray-300 text-gray-900'
+    <main className='flex min-h-screen flex-col items-center justify-center p-24 bg-gray-500'>
+      <div className='w-full h-screen rounded bg-white pt-10'>
+        <h2 className='text-center font-bold text-xl mb-2'>Tracking</h2>
+          <div className='flex items-center justify-center'>
+            <input className='m-1 p-1 bg-gray-50 border border-gray-300 text-gray-900'
               type="text"
               placeholder='Track ID'
               ref={refInput}
@@ -143,8 +152,9 @@ function App() {
             <button onClick={handleSearchTrack} className='m-1 p-1  bg-red-600 border border-gray-300 text-white'>TRACK</button>
             <button onClick={handleClearInput} className='m-1 p-1  bg-red-600 border border-gray-300 text-white'>CLEAR</button>
           </div>
-
-        <div>
+        {/* SHOW TRACKING */}
+        <div className='grid items-center justify-center'>
+          {/* POSTSABUY */}
           {responseDataPostSabuy && (
             <>
             <ul className='mt-5 mb-2'>
@@ -159,8 +169,7 @@ function App() {
             ))}            
             </>
           )}
-        </div>
-        <div>
+          {/* NINJA */}
           {responseDataNinja && (
             <>
             <ul className='mt-5 mb-2'>
@@ -175,9 +184,15 @@ function App() {
             ))}            
             </>
           )}
+          {/* ID not found */}
+          <div className="py-10">
+            {responseDataNotFound && (
+              <h2>{responseDataNotFound}</h2>
+            )}
+          </div>
         </div>
       </div>
-    </div>
+    </main>
      
     </>
   )
