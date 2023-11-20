@@ -53,6 +53,7 @@ function App() {
   }
 
   function handleKeyPress(e) {
+    e.preventDefault();
     if (e.key === "Enter") {
       handleSearchTrack();
     }
@@ -84,22 +85,6 @@ function App() {
     }
   }
 
-  // return (
-  //   <main className="flex min-h-screen flex-col items-center justify-center p-24 bg-gray-500">
-  //     <div className="w-full min-h-screen rounded bg-white pt-10">
-  //       <h2 className="text-center font-bold text-xl mb-2">Tracking</h2>
-  //       {/* SHOW SEARCH INPUT */}
-  //       <Search
-  //         refInput={refInput}
-  //         handleKeyPress={handleKeyPress}
-  //         handleSearchTrack={handleSearchTrack}
-  //         handleClearInput={handleClearInput}
-  //       />
-  //       {/* SHOW TRACKING */}
-  //       <Tracking responseData={responseData} error={error} />
-  //     </div>
-  //   </main>
-  // );
   return (
     <>
       <div
