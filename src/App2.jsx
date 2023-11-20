@@ -53,8 +53,8 @@ function App() {
   }
 
   function handleKeyPress(e) {
-    e.preventDefault();
     if (e.key === "Enter") {
+      e.preventDefault();
       handleSearchTrack();
     }
   }
