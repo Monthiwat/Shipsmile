@@ -16,22 +16,23 @@ export default function Tracking({ responseData, error }) {
           </ul>
           <div>
             <h2 className="font-bold text-l mb-2">ติดตามสถานะการจัดส่ง</h2>
-            {responseData.data.history.map((history, index) => (
-              <div key={index} className="ml-5 mb-2">
-                <li className="font-bold">
-                  {history.currentStatus} - {history.locationName}
+            <ul className="steps steps-vertical">
+              {responseData.data.history.map((history, index) => (
+                <li className="step step-primary" key={index}>
+                  <div>
+                    <p className="text-left text-base">
+                      {history.statusDescription}
+                      {history.locationName ? ` - ${history.locationName}` : ""}
+                    </p>
+                    <p className="text-left text-sm ">{history.statusDate}</p>
+                  </div>
                 </li>
-                <p className="px-6">{history.statusDate}</p>
-              </div>
-            ))}
+              ))}
+            </ul>
           </div>
         </>
       ) : (
-        <div className="w-full h-screen rounded bg-white pt-10">
-          <h2 className="text-center font-bold text-xl mb-2">
-            {error ? error : responseData.message}
-          </h2>
-        </div>
+        <div />
       )}
     </div>
   );
