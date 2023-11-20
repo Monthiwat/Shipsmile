@@ -9,7 +9,12 @@ export default function Tracking({ responseData, error }) {
             <li className="font-bold">
               สถานะ : {responseData.data.currentStatus}
             </li>
-            <li>น้ำหนัก : {responseData.data.weight} กรัม</li>
+            <li>
+              น้ำหนัก :{" "}
+              {responseData.data.weight
+                ? `${responseData.data.weight} กรัม`
+                : "-"}
+            </li>
             <li>วันที่ส่ง : {responseData.data.startData}</li>
             <li>วันที่รับ : {responseData.data.reciveDate}</li>
             <li>ผู้รับ/สถานที่จัดส่ง : {responseData.data.location}</li>
