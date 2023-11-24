@@ -41,9 +41,15 @@ function App() {
 
   return (
     <>
-    <main className='flex min-h-screen flex-col items-center justify-center p-20 bg-white'>
+    <main className='flex min-h-screen flex-col items-center p-5 bg-white'>
+      <div className='grid grid-cols-4 gap-4 w-96 items-center'>
+        <img src="../img/Kerrry_Express .png" alt="Kerry_Express" />
+        <img src="../img/Ninja_Van.png" alt="Ninja_Van" />
+        <img src="../img/Post_Sabuy.jpg" alt="Post_Sabuy" />
+        <img src="../img/Best-Express.jpg" alt="Best-Express" />
+      </div>
       <div className='w-full h-screen rounded bg-white pt-2'>
-        <h2 className='text-center font-bold text-xl mb-2'>Tracking</h2>
+        <h2 className='text-center font-bold text-2xl mb-2'>TRACKING</h2>
         {/* SHOW  SEARCH INPUT*/}
         <Search
           refInput={refInput}

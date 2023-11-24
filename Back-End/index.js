@@ -3,11 +3,15 @@ const cors = require("cors");
 
 const { 
     getTrackingPostSabuyData,
-    getTrackingNinjavanData 
+    getTrackingNinjavanData,
+    getTrackingKerryExpressData,
+    getTrackingBestExpressData
 } = require("./controller/index");
 const { 
     formatDataPostSabuy, 
-    formatDataNinjavan 
+    formatDataNinjavan, 
+    formatDataKerryExpress, 
+    formatDataBestExpress 
 } = require("./utils/index");
 
 const app = express();
@@ -36,6 +40,24 @@ app.get("/api/tracking/:trackId", async (req, res) => {
         console.log("tmpFormatData2 : ", tmpFormatData);
         res.send(tmpFormatData);
     
+    } else if (trackId.startsWith("L")) {
+        let tmpGetTrackingKerryExpressData = await getTrackingKerryExpressData(trackId);
+        let tmpFormatData = await formatDataKerryExpress(
+            trackId,
+            tmpGetTrackingKerryExpressData
+        );
+        console.log("tmpFormatData3 : ", tmpFormatData);
+        res.send(tmpFormatData);
+    
+    } else if (trackId.startsWith("6")) {
+        let tmpGetTrackingKerryExpressData = await getTrackingBestExpressData(trackId);
+        let tmpFormatData = await formatDataBestExpress(
+            trackId,
+            tmpGetTrackingKerryExpressData
+        );
+        console.log("tmpFormatData4 : ", tmpFormatData);
+        res.send(tmpFormatData);
+    
         } else {
         return res.send({
             status: false,
@@ -57,3 +79,6 @@ app.get("*", async (req, res) => {
 app.listen(8000, () => {
     console.log("Server in port 8000")
 });
+
+
+

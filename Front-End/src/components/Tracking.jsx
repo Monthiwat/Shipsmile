@@ -10,17 +10,17 @@ export default function Tracking({
       {responseData && (
         <>
           <ul className="mt-5 mb-2">
-            <li className="font-bold">{responseData.data.currentStatus}</li>
-            <li>{responseData.data.currentStatusDate}</li>
+            <li className="font-bold text-sm">{responseData.data.currentStatus}</li>
+            <li className="text-sm">{responseData.data.currentStatusDate}</li>
           </ul>
 
           {responseData &&
             responseData.data.history.map((item, index) => (
               <div key={index} className="ml-5 mb-2">
-                <li className="font-bold">
+                <li className="font-bold text-sm">
                   {item.StatusDescription} - {item.locationName}
                 </li>
-                <p className="px-6">{item.statusDate}</p>
+                <p className="px-6 text-sm">{item.statusDate}</p>
               </div>
             ))}
         </>

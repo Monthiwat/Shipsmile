@@ -1,21 +1,11 @@
-const formatDataPostSabuy = async (trackId, data) => {
+const formatDataBestExpress = async (trackId, data) => {
   console.log("data", data);
+  console.log(data.result);
 
-  if (data.Status === true) {
-    // let newData = { ...data};
-
-    // let history = [];
-    // newData.History.forEach((h) => {
-    //   history.push({
-    //       StatusDescription: h.StatusDescription,
-    //       StatusDate: h.StatusDate,
-    //       Location: h.LocationName,
-    //   })
-    // });
-
-    let history = data.History.map((item) => {
+  if (data.result === true && data.traceLogs.length > 0) {
+    let history = data.traceLogs[0].traces.trace.map((item) => {
       // convert time
-      let tmpDateTime = new Date(item.StatusDate);
+      let tmpDateTime = new Date(item.operateTime);
       let tmpDate = tmpDateTime.toLocaleDateString("th-TH", {
         year: "numeric",
         month: "long",
@@ -24,16 +14,15 @@ const formatDataPostSabuy = async (trackId, data) => {
       let tmpTime = tmpDateTime.toLocaleTimeString("th-TH");
       let tmpStatusDate = `เมื่อ ${tmpTime} น. วันที่ ${tmpDate} `;
       return {
-        StatusDescription: item.StatusDescription,
+        StatusDescription: item.statusCodeDesc,
         statusDate: tmpStatusDate,
-        locationName: item.LocationName,
+        locationName: item.siteName,
       };
     });
 
     let newData = {
-      currentStatus: data.StatusDescription,
-      currentStatusDate: data.StatusDate,
-      // currentLocation: data.Location,
+      currentStatus: history[0].StatusDescription,
+      currentStatusDate: history[0].statusDate,
       history: history,
     };
     return {
@@ -55,5 +44,5 @@ const formatDataPostSabuy = async (trackId, data) => {
 };
 
 module.exports = {
-  formatDataPostSabuy,
+  formatDataBestExpress,
 };
