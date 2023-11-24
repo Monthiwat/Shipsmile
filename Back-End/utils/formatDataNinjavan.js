@@ -33,9 +33,10 @@ const formatDataNinjavan = async (trackId, data) => {
     history = history.reverse();
     let newData = {
       currentStatus: data.status,
-      currentStatusDate: data.delivery_end_date,
+      currentStatusDate: history[0].statusDate,
       // currentLocation: data.Location,
-      history: history,
+      courier: "Ninjavan",
+      history: history
     };
     return {
       status: true,

@@ -10,7 +10,7 @@ export default function Tracking({
       {responseData && (
         <>
           <ul className="mt-5 mb-2">
-            <li className="font-bold text-sm">{responseData.data.currentStatus}</li>
+            <li className="font-bold text-sm">{responseData.data.courier} - {responseData.data.currentStatus}</li>
             <li className="text-sm">{responseData.data.currentStatusDate}</li>
           </ul>
 

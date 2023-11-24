@@ -32,9 +32,10 @@ const formatDataPostSabuy = async (trackId, data) => {
 
     let newData = {
       currentStatus: data.StatusDescription,
-      currentStatusDate: data.StatusDate,
+      currentStatusDate: history[0].statusDate,
       // currentLocation: data.Location,
-      history: history,
+      courier: "PostSabuy",
+      history: history
     };
     return {
       status: true,

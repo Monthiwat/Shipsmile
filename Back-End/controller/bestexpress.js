@@ -4,8 +4,8 @@ const md5 = require("crypto-md5");
 
 const getTrackingBestExpressData = async (trackId) => {
   try {
-
-        let bizData = `{
+    //sing encrypt body API
+    let bizData = `{
      "mailNos": {
      "mailNo": [
      "${trackId}"
@@ -29,7 +29,7 @@ const getTrackingBestExpressData = async (trackId) => {
     body.sign = md5HexString;
 
     let data = qs.stringify(body);
-    console.log(data)
+    console.log(data);
 
     const trackingData = await axios.post(
       `http://sgp-seaedi.800best.com/Thailand/kdapi/api/process`,
@@ -38,7 +38,7 @@ const getTrackingBestExpressData = async (trackId) => {
         headers: {
           "Content-Type": "application/x-www-form-urlencoded",
         },
-      },
+      }
     );
     console.log(trackingData.data);
     return trackingData.data;
@@ -80,7 +80,6 @@ const getTrackingBestExpressData = async (trackId) => {
 module.exports = {
   getTrackingBestExpressData,
 };
-
 
 // =================== SOLUTION 2 =====================================
 // const axios = require("axios");

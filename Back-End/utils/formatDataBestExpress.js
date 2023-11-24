@@ -23,7 +23,8 @@ const formatDataBestExpress = async (trackId, data) => {
     let newData = {
       currentStatus: history[0].StatusDescription,
       currentStatusDate: history[0].statusDate,
-      history: history,
+      courier: "Best Express",
+      history: history
     };
     return {
       status: true,

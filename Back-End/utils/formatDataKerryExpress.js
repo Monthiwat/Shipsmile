@@ -23,7 +23,8 @@ const formatDataKerryExpress = async (trackId, data) => {
 
       let newData ={
         currentStatus: data[0].Delivered,
-        currentStatusDate: data[0].DeliveryEstimated,
+        currentStatusDate: history[0].statusDate,
+        courier: "Kerry Express",
         history: history
 
       }
