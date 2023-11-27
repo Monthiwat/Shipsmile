@@ -2,7 +2,7 @@ const express = require("express");
 const path = require("path");
 
 const app = express();
-const port = 8083; // You can change the port if needed
+const port = 8080; // You can change the port if needed
 
 // Serve files from the "dist" folder
 app.use(express.static(path.join(__dirname, "../dist")));
