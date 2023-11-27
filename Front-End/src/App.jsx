@@ -18,7 +18,8 @@ function App() {
   function handleSearchTrack () {
     const trackId = refInput.current.value;
 
-    fetch(`http://localhost:8000/api/tracking/${trackId}`)
+    // fetch(`http://172.29.31.52:8082/api/tracking/${trackId}`)
+    fetch(`http://localhost:8082/api/tracking/${trackId}`)
     .then(response => response.json())
     .then(dataRes => {
       console.log(dataRes);
