@@ -40,7 +40,7 @@ app.get("/api/tracking/:trackId", async (req, res) => {
         console.log("tmpFormatData2 : ", tmpFormatData);
         res.send(tmpFormatData);
     
-    } else if (trackId.startsWith("L")) {
+    } else if (trackId.startsWith("S")) {
         let tmpGetTrackingKerryExpressData = await getTrackingKerryExpressData(trackId);
         let tmpFormatData = await formatDataKerryExpress(
             trackId,

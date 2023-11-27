@@ -6,7 +6,7 @@ const formatDataKerryExpress = async (trackId, data) => {
 
       let history = data[0].States.map((item) =>{
         // convert time
-        let tmpDateTime = new Date(item.DeliveryEstimated);
+        let tmpDateTime = new Date(item.UpdateDate);
         let tmpDate = tmpDateTime.toLocaleDateString("th-TH", {
           year: "numeric",
           month: "long",
@@ -22,8 +22,8 @@ const formatDataKerryExpress = async (trackId, data) => {
       });
 
       let newData ={
-        currentStatus: data[0].Delivered,
-        currentStatusDate: data[0].DeliveryEstimated,
+        currentStatus: history[0].StatusDescription,
+        currentStatusDate: history[0].statusDate,
         courier: "Kerry Express",
         history: history
 

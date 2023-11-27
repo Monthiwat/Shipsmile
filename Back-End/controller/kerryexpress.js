@@ -3,7 +3,7 @@ const axios = require("axios");
 const getTrackingKerryExpressData = async (trackId) => {
     try {
         const trackingData = await axios.get(
-            `https://api-dev.sabuyspeed.in.th/courier/v1/Tracking/Search/${trackId}`,
+            `http://api.sabuyspeed.in.th/courier/v1/Tracking/Search/${trackId}`,
             {
               "Content-Type": "application/json",
             }
