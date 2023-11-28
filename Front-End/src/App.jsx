@@ -12,12 +12,16 @@ import Tracking from './components/Tracking';
 function App() {
   const [responseData, setResponseData] = useState(null);
   const [responseDataNotFound, setResponseDataNotFound] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const refInput = useRef(null)
 
+  
   function handleSearchTrack () {
     const trackId = refInput.current.value;
-
+    setResponseData("");
+    setLoading(true);
+    
     fetch(`http://172.29.31.52:8082/api/tracking/${trackId}`)
     // fetch(`http://localhost:8082/api/tracking/${trackId}`)
     .then(response => response.json())
@@ -26,10 +30,12 @@ function App() {
       if (dataRes.status === true) {
         setResponseData(dataRes);
         setResponseDataNotFound("");
+        setLoading(false);
       } else {
         console.log("Not Found naja")
         setResponseData("");
         setResponseDataNotFound(`ไม่พบหมายเลข ID: ${trackId}`);
+        setLoading(false);
       }
     });
   }
@@ -63,6 +69,7 @@ function App() {
           handleKeyPress={handleKeyPress}
           handleSearchTrack={handleSearchTrack}
           handleClearInput={handleClearInput}
+          showLoading={loading}
         />
         {/* SHOW TRACKING */}
         <Tracking
